@@ -1,0 +1,1954 @@
+{
+  "games": {
+    "862f59e4-058e-46b2-abaf-6a62589accba": {
+      "id": "862f59e4-058e-46b2-abaf-6a62589accba",
+      "level": 2,
+      "gridRadius": 4,
+      "cells": {
+        "-4,0": {
+          "coord": {
+            "q": -4,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-4,1": {
+          "coord": {
+            "q": -4,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-4,2": {
+          "coord": {
+            "q": -4,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-4,3": {
+          "coord": {
+            "q": -4,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-4,4": {
+          "coord": {
+            "q": -4,
+            "r": 4
+          },
+          "type": "polluted"
+        },
+        "-3,-1": {
+          "coord": {
+            "q": -3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-3,0": {
+          "coord": {
+            "q": -3,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-3,1": {
+          "coord": {
+            "q": -3,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-3,2": {
+          "coord": {
+            "q": -3,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-3,3": {
+          "coord": {
+            "q": -3,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-3,4": {
+          "coord": {
+            "q": -3,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "-2,-2": {
+          "coord": {
+            "q": -2,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "-2,-1": {
+          "coord": {
+            "q": -2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-2,0": {
+          "coord": {
+            "q": -2,
+            "r": 0
+          },
+          "type": "polluted"
+        },
+        "-2,1": {
+          "coord": {
+            "q": -2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-2,2": {
+          "coord": {
+            "q": -2,
+            "r": 2
+          },
+          "type": "polluted"
+        },
+        "-2,3": {
+          "coord": {
+            "q": -2,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-2,4": {
+          "coord": {
+            "q": -2,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "-1,-3": {
+          "coord": {
+            "q": -1,
+            "r": -3
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_2"
+        },
+        "-1,-2": {
+          "coord": {
+            "q": -1,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "-1,-1": {
+          "coord": {
+            "q": -1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-1,0": {
+          "coord": {
+            "q": -1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-1,1": {
+          "coord": {
+            "q": -1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-1,2": {
+          "coord": {
+            "q": -1,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-1,3": {
+          "coord": {
+            "q": -1,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-1,4": {
+          "coord": {
+            "q": -1,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "0,-4": {
+          "coord": {
+            "q": 0,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "0,-3": {
+          "coord": {
+            "q": 0,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "0,-2": {
+          "coord": {
+            "q": 0,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "0,-1": {
+          "coord": {
+            "q": 0,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "0,0": {
+          "coord": {
+            "q": 0,
+            "r": 0
+          },
+          "type": "start"
+        },
+        "0,1": {
+          "coord": {
+            "q": 0,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "0,2": {
+          "coord": {
+            "q": 0,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "0,3": {
+          "coord": {
+            "q": 0,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "0,4": {
+          "coord": {
+            "q": 0,
+            "r": 4
+          },
+          "type": "polluted"
+        },
+        "1,-4": {
+          "coord": {
+            "q": 1,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "1,-3": {
+          "coord": {
+            "q": 1,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "1,-2": {
+          "coord": {
+            "q": 1,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "1,-1": {
+          "coord": {
+            "q": 1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "1,0": {
+          "coord": {
+            "q": 1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "1,1": {
+          "coord": {
+            "q": 1,
+            "r": 1
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_0"
+        },
+        "1,2": {
+          "coord": {
+            "q": 1,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "1,3": {
+          "coord": {
+            "q": 1,
+            "r": 3
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_1"
+        },
+        "2,-4": {
+          "coord": {
+            "q": 2,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "2,-3": {
+          "coord": {
+            "q": 2,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "2,-2": {
+          "coord": {
+            "q": 2,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "2,-1": {
+          "coord": {
+            "q": 2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "2,0": {
+          "coord": {
+            "q": 2,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "2,1": {
+          "coord": {
+            "q": 2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "2,2": {
+          "coord": {
+            "q": 2,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "3,-4": {
+          "coord": {
+            "q": 3,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "3,-3": {
+          "coord": {
+            "q": 3,
+            "r": -3
+          },
+          "type": "polluted"
+        },
+        "3,-2": {
+          "coord": {
+            "q": 3,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "3,-1": {
+          "coord": {
+            "q": 3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "3,0": {
+          "coord": {
+            "q": 3,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "3,1": {
+          "coord": {
+            "q": 3,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "4,-4": {
+          "coord": {
+            "q": 4,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "4,-3": {
+          "coord": {
+            "q": 4,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "4,-2": {
+          "coord": {
+            "q": 4,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "4,-1": {
+          "coord": {
+            "q": 4,
+            "r": -1
+          },
+          "type": "polluted"
+        },
+        "4,0": {
+          "coord": {
+            "q": 4,
+            "r": 0
+          },
+          "type": "empty"
+        }
+      },
+      "nutrients": [
+        "nutrient_0",
+        "nutrient_1",
+        "nutrient_2"
+      ],
+      "connectedNutrients": [],
+      "startCoord": {
+        "q": 0,
+        "r": 0
+      },
+      "myceliumCells": [
+        {
+          "q": 0,
+          "r": 0
+        }
+      ],
+      "steps": 0,
+      "optimalSteps": 12,
+      "status": "playing",
+      "createdAt": 1781528928931,
+      "updatedAt": 1781528928932
+    },
+    "b185d901-492d-42c3-b442-dcb2d6c884b4": {
+      "id": "b185d901-492d-42c3-b442-dcb2d6c884b4",
+      "level": 1,
+      "gridRadius": 3,
+      "cells": {
+        "-3,0": {
+          "coord": {
+            "q": -3,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-3,1": {
+          "coord": {
+            "q": -3,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-3,2": {
+          "coord": {
+            "q": -3,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-3,3": {
+          "coord": {
+            "q": -3,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-2,-1": {
+          "coord": {
+            "q": -2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-2,0": {
+          "coord": {
+            "q": -2,
+            "r": 0
+          },
+          "type": "polluted"
+        },
+        "-2,1": {
+          "coord": {
+            "q": -2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-2,2": {
+          "coord": {
+            "q": -2,
+            "r": 2
+          },
+          "type": "polluted"
+        },
+        "-2,3": {
+          "coord": {
+            "q": -2,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-1,-2": {
+          "coord": {
+            "q": -1,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "-1,-1": {
+          "coord": {
+            "q": -1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-1,0": {
+          "coord": {
+            "q": -1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-1,1": {
+          "coord": {
+            "q": -1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-1,2": {
+          "coord": {
+            "q": -1,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-1,3": {
+          "coord": {
+            "q": -1,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "0,-3": {
+          "coord": {
+            "q": 0,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "0,-2": {
+          "coord": {
+            "q": 0,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "0,-1": {
+          "coord": {
+            "q": 0,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "0,0": {
+          "coord": {
+            "q": 0,
+            "r": 0
+          },
+          "type": "start"
+        },
+        "0,1": {
+          "coord": {
+            "q": 0,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "0,2": {
+          "coord": {
+            "q": 0,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "0,3": {
+          "coord": {
+            "q": 0,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "1,-3": {
+          "coord": {
+            "q": 1,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "1,-2": {
+          "coord": {
+            "q": 1,
+            "r": -2
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_0"
+        },
+        "1,-1": {
+          "coord": {
+            "q": 1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "1,0": {
+          "coord": {
+            "q": 1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "1,1": {
+          "coord": {
+            "q": 1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "1,2": {
+          "coord": {
+            "q": 1,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "2,-3": {
+          "coord": {
+            "q": 2,
+            "r": -3
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_1"
+        },
+        "2,-2": {
+          "coord": {
+            "q": 2,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "2,-1": {
+          "coord": {
+            "q": 2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "2,0": {
+          "coord": {
+            "q": 2,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "2,1": {
+          "coord": {
+            "q": 2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "3,-3": {
+          "coord": {
+            "q": 3,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "3,-2": {
+          "coord": {
+            "q": 3,
+            "r": -2
+          },
+          "type": "polluted"
+        },
+        "3,-1": {
+          "coord": {
+            "q": 3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "3,0": {
+          "coord": {
+            "q": 3,
+            "r": 0
+          },
+          "type": "empty"
+        }
+      },
+      "nutrients": [
+        "nutrient_0",
+        "nutrient_1"
+      ],
+      "connectedNutrients": [],
+      "startCoord": {
+        "q": 0,
+        "r": 0
+      },
+      "myceliumCells": [
+        {
+          "q": 0,
+          "r": 0
+        }
+      ],
+      "steps": 0,
+      "optimalSteps": 3,
+      "status": "playing",
+      "createdAt": 1781528939831,
+      "updatedAt": 1781528939831
+    },
+    "d6795479-88c7-468e-8cbb-d1e7cee6b067": {
+      "id": "d6795479-88c7-468e-8cbb-d1e7cee6b067",
+      "level": 2,
+      "gridRadius": 4,
+      "cells": {
+        "-4,0": {
+          "coord": {
+            "q": -4,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-4,1": {
+          "coord": {
+            "q": -4,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-4,2": {
+          "coord": {
+            "q": -4,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-4,3": {
+          "coord": {
+            "q": -4,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-4,4": {
+          "coord": {
+            "q": -4,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "-3,-1": {
+          "coord": {
+            "q": -3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-3,0": {
+          "coord": {
+            "q": -3,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-3,1": {
+          "coord": {
+            "q": -3,
+            "r": 1
+          },
+          "type": "polluted"
+        },
+        "-3,2": {
+          "coord": {
+            "q": -3,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-3,3": {
+          "coord": {
+            "q": -3,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-3,4": {
+          "coord": {
+            "q": -3,
+            "r": 4
+          },
+          "type": "polluted"
+        },
+        "-2,-2": {
+          "coord": {
+            "q": -2,
+            "r": -2
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_0"
+        },
+        "-2,-1": {
+          "coord": {
+            "q": -2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-2,0": {
+          "coord": {
+            "q": -2,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-2,1": {
+          "coord": {
+            "q": -2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-2,2": {
+          "coord": {
+            "q": -2,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-2,3": {
+          "coord": {
+            "q": -2,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-2,4": {
+          "coord": {
+            "q": -2,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "-1,-3": {
+          "coord": {
+            "q": -1,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "-1,-2": {
+          "coord": {
+            "q": -1,
+            "r": -2
+          },
+          "type": "polluted"
+        },
+        "-1,-1": {
+          "coord": {
+            "q": -1,
+            "r": -1
+          },
+          "type": "polluted"
+        },
+        "-1,0": {
+          "coord": {
+            "q": -1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-1,1": {
+          "coord": {
+            "q": -1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-1,2": {
+          "coord": {
+            "q": -1,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-1,3": {
+          "coord": {
+            "q": -1,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-1,4": {
+          "coord": {
+            "q": -1,
+            "r": 4
+          },
+          "type": "polluted"
+        },
+        "0,-4": {
+          "coord": {
+            "q": 0,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "0,-3": {
+          "coord": {
+            "q": 0,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "0,-2": {
+          "coord": {
+            "q": 0,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "0,-1": {
+          "coord": {
+            "q": 0,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "0,0": {
+          "coord": {
+            "q": 0,
+            "r": 0
+          },
+          "type": "start"
+        },
+        "0,1": {
+          "coord": {
+            "q": 0,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "0,2": {
+          "coord": {
+            "q": 0,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "0,3": {
+          "coord": {
+            "q": 0,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "0,4": {
+          "coord": {
+            "q": 0,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "1,-4": {
+          "coord": {
+            "q": 1,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "1,-3": {
+          "coord": {
+            "q": 1,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "1,-2": {
+          "coord": {
+            "q": 1,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "1,-1": {
+          "coord": {
+            "q": 1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "1,0": {
+          "coord": {
+            "q": 1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "1,1": {
+          "coord": {
+            "q": 1,
+            "r": 1
+          },
+          "type": "polluted"
+        },
+        "1,2": {
+          "coord": {
+            "q": 1,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "1,3": {
+          "coord": {
+            "q": 1,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "2,-4": {
+          "coord": {
+            "q": 2,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "2,-3": {
+          "coord": {
+            "q": 2,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "2,-2": {
+          "coord": {
+            "q": 2,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "2,-1": {
+          "coord": {
+            "q": 2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "2,0": {
+          "coord": {
+            "q": 2,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "2,1": {
+          "coord": {
+            "q": 2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "2,2": {
+          "coord": {
+            "q": 2,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "3,-4": {
+          "coord": {
+            "q": 3,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "3,-3": {
+          "coord": {
+            "q": 3,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "3,-2": {
+          "coord": {
+            "q": 3,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "3,-1": {
+          "coord": {
+            "q": 3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "3,0": {
+          "coord": {
+            "q": 3,
+            "r": 0
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_2"
+        },
+        "3,1": {
+          "coord": {
+            "q": 3,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "4,-4": {
+          "coord": {
+            "q": 4,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "4,-3": {
+          "coord": {
+            "q": 4,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "4,-2": {
+          "coord": {
+            "q": 4,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "4,-1": {
+          "coord": {
+            "q": 4,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "4,0": {
+          "coord": {
+            "q": 4,
+            "r": 0
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_1"
+        }
+      },
+      "nutrients": [
+        "nutrient_0",
+        "nutrient_1",
+        "nutrient_2"
+      ],
+      "connectedNutrients": [],
+      "startCoord": {
+        "q": 0,
+        "r": 0
+      },
+      "myceliumCells": [
+        {
+          "q": 0,
+          "r": 0
+        }
+      ],
+      "steps": 0,
+      "optimalSteps": 12,
+      "status": "playing",
+      "createdAt": 1781528990519,
+      "updatedAt": 1781528990520
+    },
+    "2766eb1a-0302-4a90-b906-b5d1a7212ab5": {
+      "id": "2766eb1a-0302-4a90-b906-b5d1a7212ab5",
+      "level": 2,
+      "gridRadius": 4,
+      "cells": {
+        "-4,0": {
+          "coord": {
+            "q": -4,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-4,1": {
+          "coord": {
+            "q": -4,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-4,2": {
+          "coord": {
+            "q": -4,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-4,3": {
+          "coord": {
+            "q": -4,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-4,4": {
+          "coord": {
+            "q": -4,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "-3,-1": {
+          "coord": {
+            "q": -3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-3,0": {
+          "coord": {
+            "q": -3,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-3,1": {
+          "coord": {
+            "q": -3,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-3,2": {
+          "coord": {
+            "q": -3,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-3,3": {
+          "coord": {
+            "q": -3,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-3,4": {
+          "coord": {
+            "q": -3,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "-2,-2": {
+          "coord": {
+            "q": -2,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "-2,-1": {
+          "coord": {
+            "q": -2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-2,0": {
+          "coord": {
+            "q": -2,
+            "r": 0
+          },
+          "type": "polluted"
+        },
+        "-2,1": {
+          "coord": {
+            "q": -2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-2,2": {
+          "coord": {
+            "q": -2,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-2,3": {
+          "coord": {
+            "q": -2,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-2,4": {
+          "coord": {
+            "q": -2,
+            "r": 4
+          },
+          "type": "polluted"
+        },
+        "-1,-3": {
+          "coord": {
+            "q": -1,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "-1,-2": {
+          "coord": {
+            "q": -1,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "-1,-1": {
+          "coord": {
+            "q": -1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-1,0": {
+          "coord": {
+            "q": -1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-1,1": {
+          "coord": {
+            "q": -1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-1,2": {
+          "coord": {
+            "q": -1,
+            "r": 2
+          },
+          "type": "polluted"
+        },
+        "-1,3": {
+          "coord": {
+            "q": -1,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-1,4": {
+          "coord": {
+            "q": -1,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "0,-4": {
+          "coord": {
+            "q": 0,
+            "r": -4
+          },
+          "type": "polluted"
+        },
+        "0,-3": {
+          "coord": {
+            "q": 0,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "0,-2": {
+          "coord": {
+            "q": 0,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "0,-1": {
+          "coord": {
+            "q": 0,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "0,0": {
+          "coord": {
+            "q": 0,
+            "r": 0
+          },
+          "type": "start"
+        },
+        "0,1": {
+          "coord": {
+            "q": 0,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "0,2": {
+          "coord": {
+            "q": 0,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "0,3": {
+          "coord": {
+            "q": 0,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "0,4": {
+          "coord": {
+            "q": 0,
+            "r": 4
+          },
+          "type": "empty"
+        },
+        "1,-4": {
+          "coord": {
+            "q": 1,
+            "r": -4
+          },
+          "type": "polluted"
+        },
+        "1,-3": {
+          "coord": {
+            "q": 1,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "1,-2": {
+          "coord": {
+            "q": 1,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "1,-1": {
+          "coord": {
+            "q": 1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "1,0": {
+          "coord": {
+            "q": 1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "1,1": {
+          "coord": {
+            "q": 1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "1,2": {
+          "coord": {
+            "q": 1,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "1,3": {
+          "coord": {
+            "q": 1,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "2,-4": {
+          "coord": {
+            "q": 2,
+            "r": -4
+          },
+          "type": "empty"
+        },
+        "2,-3": {
+          "coord": {
+            "q": 2,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "2,-2": {
+          "coord": {
+            "q": 2,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "2,-1": {
+          "coord": {
+            "q": 2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "2,0": {
+          "coord": {
+            "q": 2,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "2,1": {
+          "coord": {
+            "q": 2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "2,2": {
+          "coord": {
+            "q": 2,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "3,-4": {
+          "coord": {
+            "q": 3,
+            "r": -4
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_2"
+        },
+        "3,-3": {
+          "coord": {
+            "q": 3,
+            "r": -3
+          },
+          "type": "polluted"
+        },
+        "3,-2": {
+          "coord": {
+            "q": 3,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "3,-1": {
+          "coord": {
+            "q": 3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "3,0": {
+          "coord": {
+            "q": 3,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "3,1": {
+          "coord": {
+            "q": 3,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "4,-4": {
+          "coord": {
+            "q": 4,
+            "r": -4
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_0"
+        },
+        "4,-3": {
+          "coord": {
+            "q": 4,
+            "r": -3
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_1"
+        },
+        "4,-2": {
+          "coord": {
+            "q": 4,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "4,-1": {
+          "coord": {
+            "q": 4,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "4,0": {
+          "coord": {
+            "q": 4,
+            "r": 0
+          },
+          "type": "empty"
+        }
+      },
+      "nutrients": [
+        "nutrient_0",
+        "nutrient_1",
+        "nutrient_2"
+      ],
+      "connectedNutrients": [],
+      "startCoord": {
+        "q": 0,
+        "r": 0
+      },
+      "myceliumCells": [
+        {
+          "q": 0,
+          "r": 0
+        }
+      ],
+      "steps": 0,
+      "optimalSteps": 6,
+      "status": "playing",
+      "createdAt": 1781529027490,
+      "updatedAt": 1781529027491
+    },
+    "77c9f6de-1579-445b-9b96-e95d6fb603d9": {
+      "id": "77c9f6de-1579-445b-9b96-e95d6fb603d9",
+      "level": 1,
+      "gridRadius": 3,
+      "cells": {
+        "-3,0": {
+          "coord": {
+            "q": -3,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-3,1": {
+          "coord": {
+            "q": -3,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-3,2": {
+          "coord": {
+            "q": -3,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-3,3": {
+          "coord": {
+            "q": -3,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-2,-1": {
+          "coord": {
+            "q": -2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-2,0": {
+          "coord": {
+            "q": -2,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-2,1": {
+          "coord": {
+            "q": -2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-2,2": {
+          "coord": {
+            "q": -2,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "-2,3": {
+          "coord": {
+            "q": -2,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "-1,-2": {
+          "coord": {
+            "q": -1,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "-1,-1": {
+          "coord": {
+            "q": -1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "-1,0": {
+          "coord": {
+            "q": -1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "-1,1": {
+          "coord": {
+            "q": -1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "-1,2": {
+          "coord": {
+            "q": -1,
+            "r": 2
+          },
+          "type": "polluted"
+        },
+        "-1,3": {
+          "coord": {
+            "q": -1,
+            "r": 3
+          },
+          "type": "empty"
+        },
+        "0,-3": {
+          "coord": {
+            "q": 0,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "0,-2": {
+          "coord": {
+            "q": 0,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "0,-1": {
+          "coord": {
+            "q": 0,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "0,0": {
+          "coord": {
+            "q": 0,
+            "r": 0
+          },
+          "type": "start"
+        },
+        "0,1": {
+          "coord": {
+            "q": 0,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "0,2": {
+          "coord": {
+            "q": 0,
+            "r": 2
+          },
+          "type": "empty"
+        },
+        "0,3": {
+          "coord": {
+            "q": 0,
+            "r": 3
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_0"
+        },
+        "1,-3": {
+          "coord": {
+            "q": 1,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "1,-2": {
+          "coord": {
+            "q": 1,
+            "r": -2
+          },
+          "type": "polluted"
+        },
+        "1,-1": {
+          "coord": {
+            "q": 1,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "1,0": {
+          "coord": {
+            "q": 1,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "1,1": {
+          "coord": {
+            "q": 1,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "1,2": {
+          "coord": {
+            "q": 1,
+            "r": 2
+          },
+          "type": "nutrient",
+          "nutrientId": "nutrient_1"
+        },
+        "2,-3": {
+          "coord": {
+            "q": 2,
+            "r": -3
+          },
+          "type": "empty"
+        },
+        "2,-2": {
+          "coord": {
+            "q": 2,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "2,-1": {
+          "coord": {
+            "q": 2,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "2,0": {
+          "coord": {
+            "q": 2,
+            "r": 0
+          },
+          "type": "empty"
+        },
+        "2,1": {
+          "coord": {
+            "q": 2,
+            "r": 1
+          },
+          "type": "empty"
+        },
+        "3,-3": {
+          "coord": {
+            "q": 3,
+            "r": -3
+          },
+          "type": "polluted"
+        },
+        "3,-2": {
+          "coord": {
+            "q": 3,
+            "r": -2
+          },
+          "type": "empty"
+        },
+        "3,-1": {
+          "coord": {
+            "q": 3,
+            "r": -1
+          },
+          "type": "empty"
+        },
+        "3,0": {
+          "coord": {
+            "q": 3,
+            "r": 0
+          },
+          "type": "empty"
+        }
+      },
+      "nutrients": [
+        "nutrient_0",
+        "nutrient_1"
+      ],
+      "connectedNutrients": [],
+      "startCoord": {
+        "q": 0,
+        "r": 0
+      },
+      "myceliumCells": [
+        {
+          "q": 0,
+          "r": 0
+        }
+      ],
+      "steps": 0,
+      "optimalSteps": 4,
+      "status": "playing",
+      "createdAt": 1781529208907,
+      "updatedAt": 1781529208968
+    }
+  }
+}
