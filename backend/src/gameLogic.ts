@@ -13,7 +13,7 @@ const LEVEL_CONFIGS: Record<number, { radius: number; nutrients: number; pollute
 export interface GameConfig {
   gridRadius?: number;
   nutrientCount?: number;
-  pollutedCount?: number;
+  pollutedDensity?: number;
   useStepBudget?: boolean;
   stepBudget?: number;
 }
@@ -35,7 +35,8 @@ export function createNewGame(level: number = 1, config: GameConfig = {}): GameS
   const levelConfig = LEVEL_CONFIGS[level] || LEVEL_CONFIGS[5];
   const radius = config.gridRadius ?? levelConfig.radius;
   const nutrientCount = config.nutrientCount ?? levelConfig.nutrients;
-  const pollutedCount = config.pollutedCount ?? levelConfig.polluted;
+  const pollutedDensity = config.pollutedDensity ?? (levelConfig.polluted / generateHexGrid(levelConfig.radius).length);
+  const clampedDensity = Math.max(0, Math.min(0.7, pollutedDensity));
   const useStepBudget = config.useStepBudget ?? false;
   const stepBudget = config.stepBudget ?? 0;
 
@@ -66,10 +67,17 @@ export function createNewGame(level: number = 1, config: GameConfig = {}): GameS
     }
   }
 
+  const emptyAfterNutrients = availableForPlacement.filter(
+    (c) => cells[coordKey(c)].type === HexType.EMPTY
+  ).length;
+  const pollutedCount = Math.floor(emptyAfterNutrients * clampedDensity);
+  const minPolluted = 0;
+  const maxPolluted = Math.max(minPolluted, emptyAfterNutrients - 1);
+  const clampedPolluted = Math.max(minPolluted, Math.min(maxPolluted, pollutedCount));
+
   let pollutedPlaced = 0;
-  const maxPolluted = Math.min(pollutedCount, availableForPlacement.length - nutrients.length);
   for (const coord of availableForPlacement) {
-    if (pollutedPlaced >= maxPolluted) break;
+    if (pollutedPlaced >= clampedPolluted) break;
     const key = coordKey(coord);
     if (cells[key].type === HexType.EMPTY) {
       cells[key].type = HexType.POLLUTED;
@@ -86,6 +94,7 @@ export function createNewGame(level: number = 1, config: GameConfig = {}): GameS
     id: uuidv4(),
     level,
     gridRadius: radius,
+    pollutedDensity: clampedDensity,
     cells,
     nutrients,
     connectedNutrients: [],
@@ -113,48 +122,42 @@ function calculateOptimalSteps(
 
   if (nutrientCoords.length === 0) return 0;
 
-  const allPoints = [{ coord: startCoord, id: 'start' }, ...nutrientCoords];
-  const distances = new Map<string, Map<string, number>>();
-
-  for (const a of allPoints) {
-    distances.set(a.id, new Map());
-    for (const b of allPoints) {
-      if (a.id === b.id) {
-        distances.get(a.id)!.set(b.id, 0);
-      } else {
-        const path = findPathAStar(a.coord, b.coord, cells, radius, [HexType.POLLUTED]);
-        distances.get(a.id)!.set(b.id, path ? path.length - 1 : Infinity);
-      }
-    }
-  }
-
-  const permute = (arr: { coord: HexCoord; id: string }[]): number => {
-    if (arr.length <= 1) return 0;
-    let min = Infinity;
-    const permuteHelper = (prefix: { coord: HexCoord; id: string }[], remaining: { coord: HexCoord; id: string }[]) => {
-      if (remaining.length === 0) {
-        let dist = 0;
-        let current = 'start';
-        for (const p of prefix) {
-          dist += distances.get(current)!.get(p.id) ?? 0;
-          current = p.id;
-        }
-        if (dist < min) min = dist;
-        return;
-      }
-      for (let i = 0; i < remaining.length; i++) {
-        permuteHelper(
-          [...prefix, remaining[i]],
-          [...remaining.slice(0, i), ...remaining.slice(i + 1)]
-        );
-      }
-    };
-    permuteHelper([], arr);
-    return min === Infinity ? 10 : min;
+  const cache = new Map<string, number>();
+  const getDist = (a: HexCoord, b: HexCoord): number => {
+    const keyA = `${a.q},${a.r}`;
+    const keyB = `${b.q},${b.r}`;
+    const ck = keyA < keyB ? `${keyA}->${keyB}` : `${keyB}->${keyA}`;
+    if (cache.has(ck)) return cache.get(ck)!;
+    const path = findPathAStar(a, b, cells, radius, [HexType.POLLUTED]);
+    const d = path ? path.length - 1 : Infinity;
+    cache.set(ck, d);
+    return d;
   };
 
-  const result = permute(nutrientCoords);
-  return result === Infinity || result === 0 ? nutrientCoords.length * 3 : result;
+  let totalSteps = 0;
+  const visited = new Set<string>();
+  let current = startCoord;
+
+  for (let i = 0; i < nutrientCoords.length; i++) {
+    let nearestIdx = -1;
+    let nearestDist = Infinity;
+    for (let j = 0; j < nutrientCoords.length; j++) {
+      if (visited.has(nutrientCoords[j].id)) continue;
+      const d = getDist(current, nutrientCoords[j].coord);
+      if (d < nearestDist) {
+        nearestDist = d;
+        nearestIdx = j;
+      }
+    }
+    if (nearestIdx === -1 || nearestDist === Infinity) {
+      return nutrientCoords.length * 3;
+    }
+    visited.add(nutrientCoords[nearestIdx].id);
+    totalSteps += nearestDist;
+    current = nutrientCoords[nearestIdx].coord;
+  }
+
+  return totalSteps === 0 ? nutrientCoords.length * 3 : totalSteps;
 }
 
 export function extendMycelium(game: GameState, coord: HexCoord): { game: GameState; success: boolean; message: string } {

@@ -14,7 +14,7 @@ interface GameUI {
 interface AdvancedConfig {
   gridRadius: number;
   nutrientCount: number;
-  pollutedCount: number;
+  pollutedDensity: number;
   useStepBudget: boolean;
   stepBudget: number;
 }
@@ -28,10 +28,11 @@ export class FungiGame {
   private advancedConfig: AdvancedConfig = {
     gridRadius: 4,
     nutrientCount: 3,
-    pollutedCount: 6,
+    pollutedDensity: 0.2,
     useStepBudget: false,
     stepBudget: 20,
   };
+  private lastCustomConfig: GameConfig | null = null;
   private message: { text: string; type: MessageType } | null = null;
   private tooltipEl: HTMLElement | null = null;
   private messageTimeout: any = null;
@@ -113,6 +114,7 @@ export class FungiGame {
       btn.onclick = () => {
         this.selectedLevel = i;
         this.showAdvancedConfig = false;
+        this.lastCustomConfig = null;
         this.startNewGame(i);
       };
       levelSelector.appendChild(btn);
@@ -137,6 +139,13 @@ export class FungiGame {
     }
 
     return section;
+  }
+
+  private estimatePollutedCount(radius: number, nutrientCount: number, density: number): number {
+    const totalCells = 3 * radius * (radius + 1) + 1;
+    const availableForPlacement = Math.max(0, totalCells - 1 - Math.min(7, totalCells / 4));
+    const afterNutrients = Math.max(0, availableForPlacement - nutrientCount);
+    return Math.floor(afterNutrients * Math.max(0, Math.min(0.7, density)));
   }
 
   private createAdvancedConfigPanel(): HTMLElement {
@@ -179,15 +188,65 @@ export class FungiGame {
         const val = parseInt((e.target as HTMLInputElement).value);
         (this.advancedConfig as any)[key] = val;
         (labelRow.querySelector('span:last-child') as HTMLElement).textContent = String(val);
+        updateDensityDisplay();
       };
       row.appendChild(slider);
 
       return row;
     };
 
+    const updateDensityDisplay = () => {
+      const estCount = this.estimatePollutedCount(
+        this.advancedConfig.gridRadius,
+        this.advancedConfig.nutrientCount,
+        this.advancedConfig.pollutedDensity / 100
+      );
+      const densityPercent = this.advancedConfig.pollutedDensity;
+      if (densityValueEl) densityValueEl.textContent = `${densityPercent}% (约${estCount}格)`;
+    };
+
     panel.appendChild(addSlider('地图半径', this.advancedConfig.gridRadius, 2, 8, 'gridRadius'));
     panel.appendChild(addSlider('营养源数量', this.advancedConfig.nutrientCount, 1, 12, 'nutrientCount'));
-    panel.appendChild(addSlider('污染区数量', this.advancedConfig.pollutedCount, 0, 30, 'pollutedCount'));
+
+    const densityRow = document.createElement('div');
+    densityRow.style.marginBottom = '16px';
+
+    const densityLabelRow = document.createElement('div');
+    densityLabelRow.style.display = 'flex';
+    densityLabelRow.style.justifyContent = 'space-between';
+    densityLabelRow.style.marginBottom = '8px';
+    const estCount = this.estimatePollutedCount(
+      this.advancedConfig.gridRadius,
+      this.advancedConfig.nutrientCount,
+      this.advancedConfig.pollutedDensity / 100
+    );
+    const densityLabel = document.createElement('span');
+    densityLabel.style.fontSize = '13px';
+    densityLabel.style.color = '#d0d0e0';
+    densityLabel.textContent = '污染区密度';
+    const densityValueEl = document.createElement('span');
+    densityValueEl.style.fontSize = '13px';
+    densityValueEl.style.color = '#7ed957';
+    densityValueEl.style.fontWeight = '600';
+    densityValueEl.textContent = `${this.advancedConfig.pollutedDensity}% (约${estCount}格)`;
+    densityLabelRow.appendChild(densityLabel);
+    densityLabelRow.appendChild(densityValueEl);
+    densityRow.appendChild(densityLabelRow);
+
+    const densitySlider = document.createElement('input');
+    densitySlider.type = 'range';
+    densitySlider.min = '0';
+    densitySlider.max = '70';
+    densitySlider.value = String(this.advancedConfig.pollutedDensity);
+    densitySlider.style.width = '100%';
+    densitySlider.style.accentColor = '#7ed957';
+    densitySlider.oninput = (e) => {
+      const val = parseInt((e.target as HTMLInputElement).value);
+      this.advancedConfig.pollutedDensity = val;
+      updateDensityDisplay();
+    };
+    densityRow.appendChild(densitySlider);
+    panel.appendChild(densityRow);
 
     const stepBudgetRow = document.createElement('div');
     stepBudgetRow.style.marginTop = '16px';
@@ -225,13 +284,15 @@ export class FungiGame {
     startBtn.style.width = '100%';
     startBtn.style.marginTop = '16px';
     startBtn.onclick = () => {
-      this.startNewGame(this.selectedLevel, {
+      const config: GameConfig = {
         gridRadius: this.advancedConfig.gridRadius,
         nutrientCount: this.advancedConfig.nutrientCount,
-        pollutedCount: this.advancedConfig.pollutedCount,
+        pollutedDensity: this.advancedConfig.pollutedDensity / 100,
         useStepBudget: this.advancedConfig.useStepBudget,
         stepBudget: this.advancedConfig.stepBudget,
-      });
+      };
+      this.lastCustomConfig = config;
+      this.startNewGame(this.selectedLevel, config);
     };
     panel.appendChild(startBtn);
 
@@ -338,7 +399,13 @@ export class FungiGame {
     const newGameBtn = document.createElement('button');
     newGameBtn.className = 'btn btn-primary';
     newGameBtn.innerHTML = '🎮 新游戏';
-    newGameBtn.onclick = () => this.startNewGame(this.selectedLevel);
+    newGameBtn.onclick = () => {
+      if (this.lastCustomConfig) {
+        this.startNewGame(this.selectedLevel, this.lastCustomConfig);
+      } else {
+        this.startNewGame(this.selectedLevel);
+      }
+    };
     controls.appendChild(newGameBtn);
 
     section.appendChild(controls);
@@ -429,6 +496,7 @@ export class FungiGame {
       nextBtn.addEventListener('click', () => {
       document.body.removeChild(modal);
       this.selectedLevel = Math.min(5, this.selectedLevel + 1);
+      this.lastCustomConfig = null;
       this.startNewGame(this.selectedLevel);
     });
     }
@@ -436,7 +504,11 @@ export class FungiGame {
     const replayBtn = modal.querySelector('#replay-btn')!;
     replayBtn.addEventListener('click', () => {
       document.body.removeChild(modal);
-      this.startNewGame(this.selectedLevel);
+      if (this.lastCustomConfig) {
+        this.startNewGame(this.selectedLevel, this.lastCustomConfig);
+      } else {
+        this.startNewGame(this.selectedLevel);
+      }
     });
   }
 

@@ -21,6 +21,7 @@ export interface GameState {
   id: string;
   level: number;
   gridRadius: number;
+  pollutedDensity: number;
   cells: Record<string, HexCell>;
   nutrients: string[];
   connectedNutrients: string[];
@@ -38,7 +39,7 @@ export interface GameState {
 export interface GameConfig {
   gridRadius?: number;
   nutrientCount?: number;
-  pollutedCount?: number;
+  pollutedDensity?: number;
   useStepBudget?: boolean;
   stepBudget?: number;
 }
