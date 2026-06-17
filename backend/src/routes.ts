@@ -8,8 +8,14 @@ const router = Router();
 
 router.post('/games', (req, res) => {
   try {
-    const { level = 1, gridRadius } = req.body as CreateGameRequest;
-    const game = createNewGame(level, gridRadius);
+    const { level = 1, gridRadius, nutrientCount, pollutedCount, useStepBudget, stepBudget } = req.body as CreateGameRequest;
+    const game = createNewGame(level, {
+      gridRadius,
+      nutrientCount,
+      pollutedCount,
+      useStepBudget,
+      stepBudget,
+    });
     saveGame(game);
 
     const response: ApiResponse<typeof game> = {
@@ -134,7 +140,13 @@ router.post('/games/:id/reset', (req, res) => {
       return res.status(404).json(response);
     }
 
-    const newGame = createNewGame(game.level, game.gridRadius);
+    const newGame = createNewGame(game.level, {
+      gridRadius: game.gridRadius,
+      nutrientCount: game.nutrients.length,
+      pollutedCount: Object.values(game.cells).filter(c => c.type === 'polluted').length,
+      useStepBudget: game.useStepBudget,
+      stepBudget: game.stepBudget,
+    });
     saveGame({ ...newGame, id: game.id, createdAt: game.createdAt });
 
     const response: ApiResponse = { success: true, data: { ...newGame, id: game.id } };

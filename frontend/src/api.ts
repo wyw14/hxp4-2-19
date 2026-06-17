@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GameState, HexCoord, ApiResponse } from './types';
+import { GameState, HexCoord, ApiResponse, GameConfig } from './types';
 
 const API_BASE = '/api';
 
@@ -8,8 +8,8 @@ const api = axios.create({
   timeout: 5000,
 });
 
-export async function createGame(level: number = 1, gridRadius?: number): Promise<GameState> {
-  const response = await api.post<ApiResponse<GameState>>('/games', { level, gridRadius });
+export async function createGame(level: number = 1, config: GameConfig = {}): Promise<GameState> {
+  const response = await api.post<ApiResponse<GameState>>('/games', { level, ...config });
   if (!response.data.success || !response.data.data) {
     throw new Error(response.data.error || '创建游戏失败');
   }

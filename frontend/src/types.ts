@@ -28,9 +28,19 @@ export interface GameState {
   myceliumCells: HexCoord[];
   steps: number;
   optimalSteps: number;
+  stepBudget: number;
+  useStepBudget: boolean;
   status: 'playing' | 'won' | 'lost';
   createdAt: number;
   updatedAt: number;
+}
+
+export interface GameConfig {
+  gridRadius?: number;
+  nutrientCount?: number;
+  pollutedCount?: number;
+  useStepBudget?: boolean;
+  stepBudget?: number;
 }
 
 export interface ApiResponse<T = void> {

@@ -1,5 +1,5 @@
 import './styles.css';
-import { GameState, HexCoord, HexType } from './types';
+import { GameState, HexCoord, HexType, GameConfig } from './types';
 import { HexGridRenderer } from './hexGrid';
 import { createGame, getGame, extendMycelium, undoMove, resetGame, findPath } from './api';
 import { coordKey, findPathAStar, PixelCoord } from './hexUtils';
@@ -11,11 +11,27 @@ interface GameUI {
   panelContainer: HTMLElement;
 }
 
+interface AdvancedConfig {
+  gridRadius: number;
+  nutrientCount: number;
+  pollutedCount: number;
+  useStepBudget: boolean;
+  stepBudget: number;
+}
+
 export class FungiGame {
   private ui: GameUI;
   private gameState: GameState | null = null;
   private hexGrid: HexGridRenderer;
   private selectedLevel = 1;
+  private showAdvancedConfig = false;
+  private advancedConfig: AdvancedConfig = {
+    gridRadius: 4,
+    nutrientCount: 3,
+    pollutedCount: 6,
+    useStepBudget: false,
+    stepBudget: 20,
+  };
   private message: { text: string; type: MessageType } | null = null;
   private tooltipEl: HTMLElement | null = null;
   private messageTimeout: any = null;
@@ -78,6 +94,8 @@ export class FungiGame {
 
     if (this.gameState?.status === 'won') {
       this.showWinModal();
+    } else if (this.gameState?.status === 'lost') {
+      this.showLoseModal();
     }
   }
 
@@ -90,17 +108,134 @@ export class FungiGame {
 
     for (let i = 1; i <= 5; i++) {
       const btn = document.createElement('button');
-      btn.className = `level-btn${i === this.selectedLevel ? ' active' : ''}`;
+      btn.className = `level-btn${i === this.selectedLevel && !this.showAdvancedConfig ? ' active' : ''}`;
       btn.textContent = String(i);
       btn.onclick = () => {
         this.selectedLevel = i;
+        this.showAdvancedConfig = false;
         this.startNewGame(i);
       };
       levelSelector.appendChild(btn);
     }
 
     section.appendChild(levelSelector);
+
+    const advancedToggle = document.createElement('button');
+    advancedToggle.className = `btn btn-advanced-toggle${this.showAdvancedConfig ? ' active' : ''}`;
+    advancedToggle.innerHTML = '⚙️ 高级配置';
+    advancedToggle.style.marginTop = '12px';
+    advancedToggle.style.width = '100%';
+    advancedToggle.onclick = () => {
+      this.showAdvancedConfig = !this.showAdvancedConfig;
+      this.renderPanel();
+    };
+    section.appendChild(advancedToggle);
+
+    if (this.showAdvancedConfig) {
+      const advancedPanel = this.createAdvancedConfigPanel();
+      section.appendChild(advancedPanel);
+    }
+
     return section;
+  }
+
+  private createAdvancedConfigPanel(): HTMLElement {
+    const panel = document.createElement('div');
+    panel.className = 'advanced-config-panel';
+    panel.style.marginTop = '16px';
+    panel.style.padding = '16px';
+    panel.style.background = '#1a1a2e';
+    panel.style.borderRadius = '12px';
+    panel.style.border = '1px solid #2a2a4a';
+
+    const addSlider = (
+      label: string,
+      value: number,
+      min: number,
+      max: number,
+      key: keyof AdvancedConfig
+    ) => {
+      const row = document.createElement('div');
+      row.style.marginBottom = '16px';
+
+      const labelRow = document.createElement('div');
+      labelRow.style.display = 'flex';
+      labelRow.style.justifyContent = 'space-between';
+      labelRow.style.marginBottom = '8px';
+      labelRow.innerHTML = `
+        <span style="font-size: 13px; color: #d0d0e0;">${label}</span>
+        <span style="font-size: 13px; color: #7ed957; font-weight: 600;">${value}</span>
+      `;
+      row.appendChild(labelRow);
+
+      const slider = document.createElement('input');
+      slider.type = 'range';
+      slider.min = String(min);
+      slider.max = String(max);
+      slider.value = String(value);
+      slider.style.width = '100%';
+      slider.style.accentColor = '#7ed957';
+      slider.oninput = (e) => {
+        const val = parseInt((e.target as HTMLInputElement).value);
+        (this.advancedConfig as any)[key] = val;
+        (labelRow.querySelector('span:last-child') as HTMLElement).textContent = String(val);
+      };
+      row.appendChild(slider);
+
+      return row;
+    };
+
+    panel.appendChild(addSlider('地图半径', this.advancedConfig.gridRadius, 2, 8, 'gridRadius'));
+    panel.appendChild(addSlider('营养源数量', this.advancedConfig.nutrientCount, 1, 12, 'nutrientCount'));
+    panel.appendChild(addSlider('污染区数量', this.advancedConfig.pollutedCount, 0, 30, 'pollutedCount'));
+
+    const stepBudgetRow = document.createElement('div');
+    stepBudgetRow.style.marginTop = '16px';
+    stepBudgetRow.style.paddingTop = '16px';
+    stepBudgetRow.style.borderTop = '1px solid #2a2a4a';
+
+    const budgetToggle = document.createElement('label');
+    budgetToggle.style.display = 'flex';
+    budgetToggle.style.alignItems = 'center';
+    budgetToggle.style.gap = '10px';
+    budgetToggle.style.cursor = 'pointer';
+    budgetToggle.innerHTML = `
+      <input type="checkbox" ${this.advancedConfig.useStepBudget ? 'checked' : ''} 
+             style="width: 18px; height: 18px; accent-color: #7ed957;">
+      <span style="font-size: 14px; color: #d0d0e0;">启用步数预算</span>
+    `;
+    const checkbox = budgetToggle.querySelector('input')!;
+    checkbox.onchange = (e) => {
+      this.advancedConfig.useStepBudget = (e.target as HTMLInputElement).checked;
+      this.renderPanel();
+    };
+    stepBudgetRow.appendChild(budgetToggle);
+
+    if (this.advancedConfig.useStepBudget) {
+      const budgetSlider = addSlider('步数预算', this.advancedConfig.stepBudget, 5, 100, 'stepBudget');
+      budgetSlider.style.marginTop = '12px';
+      stepBudgetRow.appendChild(budgetSlider);
+    }
+
+    panel.appendChild(stepBudgetRow);
+
+    const startBtn = document.createElement('button');
+    startBtn.className = 'btn btn-primary';
+    startBtn.innerHTML = '🎮 生成自定义地图';
+    startBtn.style.width = '100%';
+    startBtn.style.marginTop = '16px';
+    startBtn.onclick = () => {
+      this.startNewGame(this.selectedLevel, {
+        gridRadius: this.advancedConfig.gridRadius,
+        nutrientCount: this.advancedConfig.nutrientCount,
+        pollutedCount: this.advancedConfig.pollutedCount,
+        useStepBudget: this.advancedConfig.useStepBudget,
+        stepBudget: this.advancedConfig.stepBudget,
+      });
+    };
+    panel.appendChild(startBtn);
+
+    return panel;
   }
 
   private createStatsSection(): HTMLElement {
@@ -121,7 +256,7 @@ export class FungiGame {
     else if (stepsRatio <= 1.5) stepsClass = 'warning';
     else stepsClass = 'danger';
 
-    grid.innerHTML = `
+    let statsHtml = `
       <div class="stat-card">
         <div class="stat-label">当前步数</div>
         <div class="stat-value ${stepsClass}">${this.gameState!.steps}</div>
@@ -130,6 +265,25 @@ export class FungiGame {
         <div class="stat-label">最优步数</div>
         <div class="stat-value info">${this.gameState!.optimalSteps}</div>
       </div>
+    `;
+
+    if (this.gameState!.useStepBudget) {
+      const budgetRemaining = Math.max(0, this.gameState!.stepBudget - this.gameState!.steps);
+      const budgetRatio = this.gameState!.steps / this.gameState!.stepBudget;
+      let budgetClass = '';
+      if (budgetRatio <= 0.6) budgetClass = '';
+      else if (budgetRatio <= 0.85) budgetClass = 'warning';
+      else budgetClass = 'danger';
+
+      statsHtml += `
+        <div class="stat-card">
+          <div class="stat-label">剩余步数</div>
+          <div class="stat-value ${budgetClass}">${budgetRemaining}</div>
+        </div>
+      `;
+    }
+
+    statsHtml += `
       <div class="stat-card">
         <div class="stat-label">营养源</div>
         <div class="stat-value">${this.gameState!.connectedNutrients.length}/${this.gameState!.nutrients.length}</div>
@@ -139,6 +293,8 @@ export class FungiGame {
         <div class="stat-value info">${this.gameState!.level}</div>
       </div>
     `;
+
+    grid.innerHTML = statsHtml;
 
     section.appendChild(grid);
 
@@ -284,14 +440,66 @@ export class FungiGame {
     });
   }
 
-  private async startNewGame(level: number): Promise<void> {
+  private showLoseModal(): void {
+    if (document.querySelector('.lose-modal')) return;
+
+    const modal = document.createElement('div');
+    modal.className = 'win-modal lose-modal';
+
+    const steps = this.gameState!.steps;
+    const total = this.gameState!.nutrients.length;
+    const connected = this.gameState!.connectedNutrients.length;
+
+    modal.innerHTML = `
+      <div class="win-modal-content">
+        <div class="win-title" style="color: #ff6b6b;">💀 挑战失败</div>
+        <div style="font-size: 48px; margin: 16px 0;">😔</div>
+        <div class="win-stats">
+          <div class="win-stat">
+            <div class="win-stat-label">已用步数</div>
+            <div class="win-stat-value" style="color: #ff6b6b;">${steps}</div>
+          </div>
+          <div class="win-stat">
+            <div class="win-stat-label">连接营养源</div>
+            <div class="win-stat-value">${connected}/${total}</div>
+          </div>
+        </div>
+        <div style="color: #8a8a9a; font-size: 13px; margin-bottom: 24px;">
+          步数预算已用尽，再试一次吧！
+        </div>
+        <div style="display: flex; gap: 10px; flex-direction: column;">
+          <button class="btn btn-primary" id="retry-btn">🔄 重新挑战</button>
+          <button class="btn btn-secondary" id="close-lose-btn">关闭</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const retryBtn = modal.querySelector('#retry-btn')!;
+    retryBtn.addEventListener('click', () => {
+      document.body.removeChild(modal);
+      this.handleReset();
+    });
+
+    const closeBtn = modal.querySelector('#close-lose-btn')!;
+    closeBtn.addEventListener('click', () => {
+      document.body.removeChild(modal);
+    });
+  }
+
+  private async startNewGame(level: number, config?: GameConfig): Promise<void> {
     this.setProcessing(true);
     this.showMessage('正在生成新地图...', 'info');
 
     try {
-      this.gameState = await createGame(level);
+      this.gameState = await createGame(level, config);
       this.hexGrid.setGameState(this.gameState);
-      this.showMessage(`第 ${level} 关开始！连接所有腐木营养源`, 'success');
+      if (config) {
+        this.showMessage('自定义地图生成成功！连接所有腐木营养源', 'success');
+      } else {
+        this.showMessage(`第 ${level} 关开始！连接所有腐木营养源`, 'success');
+      }
       this.renderPanel();
     } catch (e) {
       this.showMessage('创建游戏失败：' + (e instanceof Error ? e.message : '未知错误'), 'error');

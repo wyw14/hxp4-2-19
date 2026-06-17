@@ -10,6 +10,14 @@ const LEVEL_CONFIGS: Record<number, { radius: number; nutrients: number; pollute
   5: { radius: 6, nutrients: 6, polluted: 20 },
 };
 
+export interface GameConfig {
+  gridRadius?: number;
+  nutrientCount?: number;
+  pollutedCount?: number;
+  useStepBudget?: boolean;
+  stepBudget?: number;
+}
+
 function pickRandom<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -23,9 +31,13 @@ function shuffle<T>(arr: T[]): T[] {
   return result;
 }
 
-export function createNewGame(level: number = 1, customRadius?: number): GameState {
-  const config = LEVEL_CONFIGS[level] || LEVEL_CONFIGS[5];
-  const radius = customRadius ?? config.radius;
+export function createNewGame(level: number = 1, config: GameConfig = {}): GameState {
+  const levelConfig = LEVEL_CONFIGS[level] || LEVEL_CONFIGS[5];
+  const radius = config.gridRadius ?? levelConfig.radius;
+  const nutrientCount = config.nutrientCount ?? levelConfig.nutrients;
+  const pollutedCount = config.pollutedCount ?? levelConfig.polluted;
+  const useStepBudget = config.useStepBudget ?? false;
+  const stepBudget = config.stepBudget ?? 0;
 
   const allCoords = generateHexGrid(radius);
   const cells: Record<string, HexCell> = {};
@@ -42,8 +54,9 @@ export function createNewGame(level: number = 1, customRadius?: number): GameSta
 
   const nutrients: string[] = [];
   let nutrientIdx = 0;
+  const maxNutrients = Math.min(nutrientCount, availableForPlacement.length - 1);
   for (const coord of availableForPlacement) {
-    if (nutrientIdx >= config.nutrients) break;
+    if (nutrientIdx >= maxNutrients) break;
     const key = coordKey(coord);
     if (cells[key].type === HexType.EMPTY) {
       cells[key].type = HexType.NUTRIENT;
@@ -53,19 +66,21 @@ export function createNewGame(level: number = 1, customRadius?: number): GameSta
     }
   }
 
-  let pollutedCount = 0;
+  let pollutedPlaced = 0;
+  const maxPolluted = Math.min(pollutedCount, availableForPlacement.length - nutrients.length);
   for (const coord of availableForPlacement) {
-    if (pollutedCount >= config.polluted) break;
+    if (pollutedPlaced >= maxPolluted) break;
     const key = coordKey(coord);
     if (cells[key].type === HexType.EMPTY) {
       cells[key].type = HexType.POLLUTED;
-      pollutedCount++;
+      pollutedPlaced++;
     }
   }
 
   const myceliumCells: HexCoord[] = [startCoord];
 
   const optimalSteps = calculateOptimalSteps(cells, startCoord, radius, nutrients);
+  const finalStepBudget = useStepBudget ? (stepBudget > 0 ? stepBudget : Math.ceil(optimalSteps * 1.5)) : 0;
 
   return {
     id: uuidv4(),
@@ -78,6 +93,8 @@ export function createNewGame(level: number = 1, customRadius?: number): GameSta
     myceliumCells,
     steps: 0,
     optimalSteps,
+    stepBudget: finalStepBudget,
+    useStepBudget,
     status: 'playing',
     createdAt: Date.now(),
     updatedAt: Date.now(),
@@ -172,12 +189,17 @@ export function extendMycelium(game: GameState, coord: HexCoord): { game: GameSt
     return { game, success: false, message: '菌丝只能从相邻格子蔓延！' };
   }
 
+  const newSteps = game.steps + 1;
+  if (game.useStepBudget && newSteps > game.stepBudget) {
+    return { game, success: false, message: '已超出步数预算！' };
+  }
+
   const newGame: GameState = {
     ...game,
     cells: { ...game.cells },
     myceliumCells: [...game.myceliumCells, coord],
     connectedNutrients: [...game.connectedNutrients],
-    steps: game.steps + 1,
+    steps: newSteps,
     updatedAt: Date.now(),
   };
 
@@ -192,6 +214,11 @@ export function extendMycelium(game: GameState, coord: HexCoord): { game: GameSt
   if (newGame.connectedNutrients.length === newGame.nutrients.length) {
     newGame.status = 'won';
     return { game: newGame, success: true, message: '恭喜！你成功连接了所有营养源！' };
+  }
+
+  if (newGame.useStepBudget && newGame.steps >= newGame.stepBudget && newGame.connectedNutrients.length < newGame.nutrients.length) {
+    newGame.status = 'lost';
+    return { game: newGame, success: true, message: '步数用尽，挑战失败！' };
   }
 
   return { game: newGame, success: true, message: '菌丝成功蔓延' };
